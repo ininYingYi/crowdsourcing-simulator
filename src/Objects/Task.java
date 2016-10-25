@@ -10,6 +10,8 @@ public class Task {
     private Date startTime;
     private Date endTime;
     private Date nextExecuteTime;
+    private Location location;
+    private boolean isDone = false;
 
     public Task(long id, Date start, Date end) {
         this.id = id;
@@ -34,4 +36,15 @@ public class Task {
         this.nextExecuteTime = d;
     }
 
+    public void updateState() {
+        isDone = true;
+    }
+
+    public Date getEndDate() {
+        return endTime;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
 }

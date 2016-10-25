@@ -18,6 +18,7 @@ public class TaskController {
     }
 
     private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> finishTasks = new ArrayList<>();
 
     public TaskController() {
         if (!loadTasks()) System.err.println("load task error");
@@ -34,9 +35,14 @@ public class TaskController {
         return tasks.get(0);
     }
 
-
-
-
+    public void checkOutOfDateTask(Date date) {
+        for (Task task : tasks) {
+            if (task.getEndDate().before(date)) {
+                tasks.remove(task);
+                finishTasks.add(task);
+            }
+        }
+    }
 
     private boolean loadTasks() {
         tasks.add(new Task(1, new Date(2016, 10, 13, 11, 10, 0), new Date(2016, 10, 13, 12, 10, 0)));
